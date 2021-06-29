@@ -1,7 +1,77 @@
 # Дипломный проект по курсу «Django: создание функциональных веб-приложений»
 
-Проект API-сервиса и интерфейс администрирования для интернет-магазина.
+Проект API-сервиса и интерфейс администрирования для интернет-магазина, позволяющих работать с информацией о товарах, подборках товаров, заказах и отзывах покупателей.
 В качестве фреймворка использованы Django и Django REST Framework.
+
+## Документация по проекту
+
+Для запуска проекта необходимо:
+
+Клонировать репозиторий:
+
+```
+git clone https://github.com/mlobina/django-fin.git
+cd django-fin
+```
+Создать и активировать виртуальное окружение:
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Установить зависимости:
+
+`pip install -r requirements.txt`
+
+Cоздать базу в postgres, указать настройки подключения к БД в файле api_shop/settings.py 
+```
+...
+`DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'api_shop',
+        'USER': 'postgres',
+        'PASSWORD': 'mypassword',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}`  
+...
+```
+и выполнить миграции:  
+`python manage.py migrate`
+
+Выполнить команду:
+
+`python manage.py runserver`
+
+Перейти на соответствующий эндпоинт в соответствии с описанием API-сервиса:
+
+`http://127.0.0.1:8000/admin/`
+`http://127.0.0.1:8000/api/v1/`
+
+Для заполнения БД тестовыми данными:
+
+`python manage.py loaddata fixtures.json`
+
+Пользователь с правами администратора (is_staff):
+username: admin-admin
+password: 1234
+
+Для тестирования:
+
+В качестве Test Runner'а используйте `pytest`.
+
+Для запуска тестов:
+
+`venv/bin/pytest`
+
+или:
+
+установите в настройках PyCharm в разделе Python integrated tools Default test runner pytest.
+Далее использовать команду:
+
+`pytest`
 
 ## Описание API-сервиса
 
@@ -87,69 +157,3 @@ url: `/api/v1/product-collections/`
 * Страница детализации заказа с просмотром списка заказанных товаров.
 * Редактирование и просмотр отзывов.
 
-## Тестирование
-
-В качестве Test Runner'а используйте `pytest`.
-
-
-## Документация по проекту
-
-Для запуска проекта необходимо:
-
-Клонировать репозиторий:
-
-```
-git clone https://github.com/mlobina/django-fin.git
-cd django-fin
-```
-Создать и активировать виртуальное окружение:
-```
-python3 -m venv venv
-source venv/bin/activate
-```
-
-Установить зависимости:
-
-`pip install -r requirements.txt`
-
-Cоздать базу в postgres, указать настройки подключения к БД в файле api_shop/settings.py 
-```
-...
-`DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'api_shop',
-        'USER': 'postgres',
-        'PASSWORD': 'mypassword',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}`  
-...
-```
-и выполнить миграции:  
-`python manage.py migrate`
-
-Выполнить команду:
-
-`python manage.py runserver`
-
-Перейти на соответствующий эндпоинт:
-
-`http://127.0.0.1:8000/admin/`
-`http://127.0.0.1:8000/api/v1/`
-
-Для заполнения БД тестовыми данными:
-
-`python manage.py loaddata fixtures.json`
-
-Пользователь с правами администратора (is_staff):
-username: admin-admin
-password: 1234
-
-Для запуска тестов:
-
-Установить в настройках в разделе Python integrated tools Default test runner pytest.
-Далее использовать команду:
-
-`pytest`

@@ -105,7 +105,7 @@ DATABASES = {
         'NAME': 'api_shop',
         'USER': 'postgres',
         'PASSWORD': 'mypassword',
-        'HOST': '10.0.65.2',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
